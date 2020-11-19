@@ -1,1 +1,0 @@
-# ansible-mongodb-rs-arbiter
