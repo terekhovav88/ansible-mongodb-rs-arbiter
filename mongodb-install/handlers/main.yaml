@@ -1,0 +1,12 @@
+---
+- name: enable mongo
+  service: name=mongod enabled=yes
+
+- name: start mongo
+  service: name=mongod state=started
+
+- name: restart mongo
+  service: name=mongod state=restarted
+
+- name: reload firewalld
+  service: name=firewalld state=reloaded

@@ -1,0 +1,40 @@
+- name: add mongodb-repo
+  copy: src=../files/mongodb-org-4.4.repo dest=/etc/yum.repos.d/mongodb-org-4.4.repo mode=0664
+  tags: mongo
+
+- name: install mongodb
+  yum:
+    state: present
+    name:
+      - epel-release
+      - mc
+      - net-tools
+      - mongodb-org-{{mongodb_version}}
+      - mongodb-org-server-{{mongodb_version}}
+      - mongodb-org-shell-{{mongodb_version}}
+      - mongodb-org-mongos-{{mongodb_version}}
+      - mongodb-org-tools-{{mongodb_version}}
+  notify:
+    - enable mongo
+    - start mongo
+  tags: mongo
+
+- name: open ports
+  firewalld:
+    port: 27017/tcp
+    permanent: true
+    state: enabled
+  notify:
+    - reload firewalld
+
+- name: add hosts
+  template: src=../templates/hosts.j2 dest=/etc/hosts mode=0664
+  tags: mongo
+
+- name: add mongodb-conf
+  copy: src=../files/mongod.conf dest=/etc/mongod.conf mode=0664
+  notify:
+    - restart mongo
+  tags: mongo
+
+

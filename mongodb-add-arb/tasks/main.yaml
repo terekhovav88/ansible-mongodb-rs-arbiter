@@ -1,0 +1,8 @@
+---
+- name: copy addRS script
+  template: src=../templates/addRS.j2 dest=/tmp/addRS.js
+
+- name: add members
+  shell: mongo < /tmp/addRS.js
+  register: command_result
+  changed_when: "command_result.stdout == 'Ignoring failure...'"

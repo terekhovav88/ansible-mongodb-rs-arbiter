@@ -1,0 +1,1 @@
+rs.initiate({_id: "rs0", members: [{_id: 0, host: "{{ mongodb_primary_host }}:27017"}, {_id: 1, host: "{{ mongodb_secondary_host }}:27017"}, {_id: 2, host: "{{ mongodb_arbiter_host }}:27017", arbiterOnly : true}]});

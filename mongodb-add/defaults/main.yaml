@@ -1,0 +1,4 @@
+---
+
+mongodb_secondary_host: "mongodb-2"
+mongodb_arbiter_host: "mongodb-3"

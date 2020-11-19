@@ -1,0 +1,17 @@
+---
+ - hosts: mongo
+   gather_facts: true
+   roles:
+     - mongodb-install
+ - hosts: primary
+   gather_facts: true
+   roles:
+     - mongodb-rs
+ - hosts: secondary
+   gather_facts: true
+   roles:
+     - mongodb-add
+ - hosts: primary
+   gather_facts: true
+   roles:
+     - mongodb-add-arb

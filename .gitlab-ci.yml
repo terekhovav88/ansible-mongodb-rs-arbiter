@@ -1,0 +1,19 @@
+stages:
+  - ansible-validate
+  - ansible-run
+ansible-validate:
+  stage: ansible-validate
+  script:
+    - ansible-lint play.yaml
+  tags:
+    - a.terekhov
+ansible-run:
+  stage: ansible-run
+  script:
+    - >
+      ansible-playbook play.yaml -i hosts --extra-vars
+      "ansible_password=$ANSIBLE_PASSWORD
+      ansible_ssh_user=$ANSIBLE_SSH_USER"
+#      ansible_ssh_host=$ANSIBLE_SSH_HOST"
+  tags:
+    - a.terekhov

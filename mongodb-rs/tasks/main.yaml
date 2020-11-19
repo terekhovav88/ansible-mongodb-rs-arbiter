@@ -1,0 +1,8 @@
+---
+- name: copy initRS script
+  template: src=../templates/initRS.j2 dest=/tmp/initRS.js
+
+- name: initiate replica set from first primary
+  shell: mongo < /tmp/initRS.js
+  register: command_result
+  changed_when: "command_result.stdout == 'Ignoring failure...'"

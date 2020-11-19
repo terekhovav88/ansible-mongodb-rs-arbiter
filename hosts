@@ -1,0 +1,10 @@
+[mongo]
+mongodb-1.local ansible_host=
+mongodb-2.local ansible_host=
+mongodb-3.local ansible_host=
+[primary]
+mongodb-1.local ansible_host=
+[secondary]
+mongodb-2.local ansible_host=
+[arbiter]
+mongodb-3.local ansible_host=
